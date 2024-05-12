@@ -1,0 +1,22 @@
+Added Component: Designator=J2(16P - Right 3.5mm Industrial Connector)
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "{'manufacturer': u'Phoenix Contact'}"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "1731811"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND2 Pin=J2-1
+Added Pin To Net: NetName=+24 Pin=J2-2
+Added Pin To Net: NetName=GND2 Pin=J2-3
+Added Pin To Net: NetName=+24 Pin=J2-4
+Added Pin To Net: NetName=CDO9 Pin=J2-7
+Added Pin To Net: NetName=CDO8 Pin=J2-8
+Added Pin To Net: NetName=CDO7 Pin=J2-9
+Added Pin To Net: NetName=CDO6 Pin=J2-10
+Added Pin To Net: NetName=CDO5 Pin=J2-11
+Added Pin To Net: NetName=CDO4 Pin=J2-12
+Added Pin To Net: NetName=CDO3 Pin=J2-13
+Added Pin To Net: NetName=CDO2 Pin=J2-14
+Added Pin To Net: NetName=CDO1 Pin=J2-15
+Added Pin To Net: NetName=CDO0 Pin=J2-16
+Added Member To Class: ClassName=Connectors Member=Component J2 16P - Right 3.5mm Industrial Connector

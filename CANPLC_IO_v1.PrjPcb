@@ -590,7 +590,7 @@ ClassGenCCAutoRoomEnabled=0
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=
+DocumentUniqueId=NMNNSHNX
 
 [Document33]
 DocumentPath=..\..\0001_Personal\Libraries\Altium-Library\0015 - Voltage Regulators Through Hole\Voltage Regulators Through Hole.SchLib
@@ -625,6 +625,23 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=ENFBYXCD
+
+[Document35]
+DocumentPath=CANPLC_IO.PcbDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=TOSIVDDB
 
 [Configuration1]
 Name=Sources

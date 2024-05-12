@@ -1,0 +1,9 @@
+Add Component: Footprint Not Found 4-POS 2.54mm Header
+Add Pin To Net: Unknown Pin: Pin J4-1
+Add Pin To Net: Unknown Pin: Pin J4-2
+Add Pin To Net: Unknown Pin: Pin J4-3
+Add Pin To Net: Unknown Pin: Pin J4-4
+Added Member To Class: ClassName=Connectors Member=Component * M3 Mounting Hole
+Added Member To Class: ClassName=Connectors Member=Component * M3 Mounting Hole
+Added Member To Class: ClassName=Connectors Member=Component * M3 Mounting Hole
+Add Class Member: Failed to add class member : Component J4 4-POS 2.54mm Header

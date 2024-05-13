@@ -1,0 +1,520 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD22\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">12/05/2024</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">21:13:13</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc" class="file"><acronym title="D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc">D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">64</td></tr>
+</table>
+</td>
+</table><a name="IDBRHQU5NGVMPBKF5GD45NLAWEIERCIFDUTMNHBZLGPRO1LSDV04BJ"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGI4LSABYUGY2HFN2TZNOPYE3KHYS15FZW5UHRJGRTXXZ3ZDJN01P">Clearance Constraint (Gap=0.2mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID04IM2PIA1QWNFC1K05IHE1SYFCOMLR141MI40EMX42LK4P1LJPMH">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQUKHKVMTIB3BIU545YAOO3M54EGOGTUORBXET2OQBRHC2QEJ0BID">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDDZCDSFOQAKEECYYXEVDYYMWCINN1ZR2U2T2FVILPW0RL3S20BLVG">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLKT1SPNCTXEGMQYREIMNCQF1ULJGSNJJPUF3DHKDMTTWVRKDDP0B">Width Constraint (Min=0.127mm) (Max=5mm) (Preferred=0.5mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIHISNLB0KGHQEUQSKHQX0C2WSP4T0UJACWEKD4MGNMKNDWLIHMFF">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDPNDBDRDMN35NDGN20HHD1QFJHFF1TH23KTN52LUHZK5N0MR5W3">Hole Size Constraint (Min=0.3mm) (Max=6.3mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID4HIFOJYMYUVSCKA0MT1W22LLXEYAWAABQGD1DABC1EB1W2WWNGO">Hole To Hole Clearance (Gap=0.5mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOJO5SNCROXNMGCU4RRD5YC0LQHWQE1PFKSWAJCNLMPIIXXUTHOOI">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">64</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDK24NDC3E0UTIHEUUKTLQNT44LCX1PKTKYF4N0MG0GM3AFXQESV1B">Silk To Solder Mask (Clearance=0mm) (IsPad),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQBYFLHYPTK34PGTVJIBCWZZTZKAR3FBTUSSYKULOMVOZDCPA3NQL">Silk to Silk (Clearance=0mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDD2AVTXQGJBC1CZ1XTSNSWAWJYMSWBAX2BC1OUND0KSD3YMVCFLPG">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXRFTTT4GJODXNC4M3T5QHJTJZGHKNLVPSRYEUZPNMKDLVVXCXCVG">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">64</td>
+</tr>
+</table><br><a name="IDOJO5SNCROXNMGCU4RRD5YC0LQHWQE1PFKSWAJCNLMPIIXXUTHOOI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4690.375mil|Location2.X=4701.625mil|Location1.Y=3044.85mil|Location2.Y=3056.1mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4690.375mil|Location2.X=4701.625mil|Location1.Y=3044.85mil|Location2.Y=3056.1mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.187mm &lt; 0.254mm) Between Pad B1-11(119.38mm,76.524mm) on Top Layer And Via (119.278mm,77.927mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.187mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4863.186mil|Location2.X=4874.436mil|Location1.Y=2972.701mil|Location2.Y=2983.951mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4863.186mil|Location2.X=4874.436mil|Location1.Y=2972.701mil|Location2.Y=2983.951mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.105mm &lt; 0.254mm) Between Pad B1-8(123.19mm,76.524mm) on Top Layer And Via (124.308mm,75.514mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3841.356mil|Location2.X=3852.606mil|Location1.Y=4314.375mil|Location2.Y=4325.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3841.356mil|Location2.X=3852.606mil|Location1.Y=4314.375mil|Location2.Y=4325.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.105mm &lt; 0.254mm) Between Pad C1-2(98.577mm,109.368mm) on Top Layer And Via (97.059mm,109.728mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3189.451mil|Location2.X=3200.701mil|Location1.Y=4293.154mil|Location2.Y=4306.585mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3189.451mil|Location2.X=3200.701mil|Location1.Y=4293.154mil|Location2.Y=4306.585mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.144mm &lt; 0.254mm) Between Pad C4-1(80.289mm,108.768mm) on Top Layer And Via (81.788mm,109.474mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.144mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3208.056mil|Location2.X=3220.993mil|Location1.Y=4077.088mil|Location2.Y=4088.338mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3208.056mil|Location2.X=3220.993mil|Location1.Y=4077.088mil|Location2.Y=4088.338mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.067mm &lt; 0.254mm) Between Pad D25-A(80.961mm,102.845mm) on Top Layer And Via (81.915mm,104.267mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.067mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3207.938mil|Location2.X=3219.188mil|Location1.Y=4010.369mil|Location2.Y=4021.619mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3207.938mil|Location2.X=3219.188mil|Location1.Y=4010.369mil|Location2.Y=4021.619mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.034mm &lt; 0.254mm) Between Pad D25-A(80.961mm,102.845mm) on Top Layer And Via (82.067mm,101.575mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.034mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4262.413mil|Location2.X=4274.385mil|Location1.Y=3700.521mil|Location2.Y=3711.771mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4262.413mil|Location2.X=4274.385mil|Location1.Y=3700.521mil|Location2.Y=3711.771mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.245mm &lt; 0.254mm) Between Pad R13-1(107.828mm,93.269mm) on Top Layer And Via (108.834mm,94.721mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.245mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4292.427mil|Location2.X=4305.083mil|Location1.Y=3700.058mil|Location2.Y=3711.308mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4292.427mil|Location2.X=4305.083mil|Location1.Y=3700.058mil|Location2.Y=3711.308mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad R13-2(109.698mm,93.269mm) on Top Layer And Via (108.834mm,94.721mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2993.477mil|Location2.X=3004.727mil|Location1.Y=3038.354mil|Location2.Y=3049.604mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2993.477mil|Location2.X=3004.727mil|Location1.Y=3038.354mil|Location2.Y=3049.604mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.231mm &lt; 0.254mm) Between Pad R14-1(75.339mm,77.922mm) on Top Layer And Via (76.708mm,76.835mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.231mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2992.393mil|Location2.X=3003.643mil|Location1.Y=3006.347mil|Location2.Y=3019.186mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2992.393mil|Location2.X=3003.643mil|Location1.Y=3006.347mil|Location2.Y=3019.186mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.056mm &lt; 0.254mm) Between Pad R14-2(75.339mm,76.052mm) on Top Layer And Via (76.708mm,76.835mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.056mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3892.642mil|Location2.X=3903.892mil|Location1.Y=3038.482mil|Location2.Y=3049.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3892.642mil|Location2.X=3903.892mil|Location1.Y=3038.482mil|Location2.Y=3049.732mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.204mm &lt; 0.254mm) Between Pad R7-1(99.839mm,77.922mm) on Top Layer And Via (98.506mm,76.835mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.204mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3893.776mil|Location2.X=3905.026mil|Location1.Y=3007.808mil|Location2.Y=3020.588mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3893.776mil|Location2.X=3905.026mil|Location1.Y=3007.808mil|Location2.Y=3020.588mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.024mm &lt; 0.254mm) Between Pad R7-2(99.839mm,76.052mm) on Top Layer And Via (98.506mm,76.835mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.024mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3545.949mil|Location2.X=3557.199mil|Location1.Y=3245.335mil|Location2.Y=3256.585mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3545.949mil|Location2.X=3557.199mil|Location1.Y=3245.335mil|Location2.Y=3256.585mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.149mm &lt; 0.254mm) Between Pad U10-3(90.21mm,81.333mm) on Top Layer And Via (90.21mm,83.25mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4417.8mil|Location2.Y=4429.05mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4417.8mil|Location2.Y=4429.05mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-1(85.103mm,112.605mm) on Top Layer And Pad U1-2(85.103mm,112.105mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4240.635mil|Location2.Y=4251.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4240.635mil|Location2.Y=4251.885mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-10(85.103mm,108.105mm) on Top Layer And Pad U1-11(85.103mm,107.605mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4260.32mil|Location2.Y=4271.57mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4260.32mil|Location2.Y=4271.57mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-10(85.103mm,108.105mm) on Top Layer And Pad U1-9(85.103mm,108.605mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4220.95mil|Location2.Y=4232.2mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4220.95mil|Location2.Y=4232.2mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-11(85.103mm,107.605mm) on Top Layer And Pad U1-12(85.103mm,107.105mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3414.95mil|Location2.X=3426.2mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3414.95mil|Location2.X=3426.2mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-13(86.633mm,105.575mm) on Top Layer And Pad U1-14(87.133mm,105.575mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3434.635mil|Location2.X=3445.885mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3434.635mil|Location2.X=3445.885mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-14(87.133mm,105.575mm) on Top Layer And Pad U1-15(87.633mm,105.575mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3454.32mil|Location2.X=3465.57mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3454.32mil|Location2.X=3465.57mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-15(87.633mm,105.575mm) on Top Layer And Pad U1-16(88.133mm,105.575mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3474.005mil|Location2.X=3485.255mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3474.005mil|Location2.X=3485.255mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-16(88.133mm,105.575mm) on Top Layer And Pad U1-17(88.633mm,105.575mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3493.69mil|Location2.X=3504.94mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3493.69mil|Location2.X=3504.94mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-17(88.633mm,105.575mm) on Top Layer And Pad U1-18(89.133mm,105.575mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3513.375mil|Location2.X=3524.625mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3513.375mil|Location2.X=3524.625mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-18(89.133mm,105.575mm) on Top Layer And Pad U1-19(89.633mm,105.575mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3533.06mil|Location2.X=3544.31mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3533.06mil|Location2.X=3544.31mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-19(89.633mm,105.575mm) on Top Layer And Pad U1-20(90.133mm,105.575mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4398.115mil|Location2.Y=4409.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4398.115mil|Location2.Y=4409.365mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-2(85.103mm,112.105mm) on Top Layer And Pad U1-3(85.103mm,111.605mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3552.745mil|Location2.X=3563.995mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3552.745mil|Location2.X=3563.995mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-20(90.133mm,105.575mm) on Top Layer And Pad U1-21(90.633mm,105.575mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3572.43mil|Location2.X=3583.68mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3572.43mil|Location2.X=3583.68mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-21(90.633mm,105.575mm) on Top Layer And Pad U1-22(91.133mm,105.575mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3592.115mil|Location2.X=3603.365mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3592.115mil|Location2.X=3603.365mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-22(91.133mm,105.575mm) on Top Layer And Pad U1-23(91.633mm,105.575mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3611.8mil|Location2.X=3623.05mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3611.8mil|Location2.X=3623.05mil|Location1.Y=4120.375mil|Location2.Y=4131.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-23(91.633mm,105.575mm) on Top Layer And Pad U1-24(92.133mm,105.575mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4220.95mil|Location2.Y=4232.2mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4220.95mil|Location2.Y=4232.2mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-25(93.662mm,107.105mm) on Top Layer And Pad U1-26(93.662mm,107.605mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4240.635mil|Location2.Y=4251.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4240.635mil|Location2.Y=4251.885mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-26(93.662mm,107.605mm) on Top Layer And Pad U1-27(93.662mm,108.105mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4260.32mil|Location2.Y=4271.57mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4260.32mil|Location2.Y=4271.57mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-27(93.662mm,108.105mm) on Top Layer And Pad U1-28(93.662mm,108.605mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4280.005mil|Location2.Y=4291.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4280.005mil|Location2.Y=4291.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-28(93.662mm,108.605mm) on Top Layer And Pad U1-29(93.662mm,109.105mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4299.69mil|Location2.Y=4310.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4299.69mil|Location2.Y=4310.94mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-29(93.662mm,109.105mm) on Top Layer And Pad U1-30(93.662mm,109.605mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4378.43mil|Location2.Y=4389.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4378.43mil|Location2.Y=4389.68mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-3(85.103mm,111.605mm) on Top Layer And Pad U1-4(85.103mm,111.105mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4319.375mil|Location2.Y=4330.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4319.375mil|Location2.Y=4330.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-30(93.662mm,109.605mm) on Top Layer And Pad U1-31(93.662mm,110.105mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4339.06mil|Location2.Y=4350.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4339.06mil|Location2.Y=4350.31mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-31(93.662mm,110.105mm) on Top Layer And Pad U1-32(93.662mm,110.605mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4780.375mil|Location2.X=4791.625mil|Location1.Y=4919.048mil|Location2.Y=4930.298mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4780.375mil|Location2.X=4791.625mil|Location1.Y=4919.048mil|Location2.Y=4930.298mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.134mm &lt; 0.254mm) Between Pad U13-2(121.564mm,123.853mm) on Top Layer And Via (121.564mm,125.755mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.134mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4358.745mil|Location2.Y=4369.995mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4358.745mil|Location2.Y=4369.995mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-32(93.662mm,110.605mm) on Top Layer And Pad U1-33(93.662mm,111.105mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4378.43mil|Location2.Y=4389.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4378.43mil|Location2.Y=4389.68mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-33(93.662mm,111.105mm) on Top Layer And Pad U1-34(93.662mm,111.605mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4398.115mil|Location2.Y=4409.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4398.115mil|Location2.Y=4409.365mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-34(93.662mm,111.605mm) on Top Layer And Pad U1-35(93.662mm,112.105mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4417.8mil|Location2.Y=4429.05mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3712.375mil|Location2.X=3723.625mil|Location1.Y=4417.8mil|Location2.Y=4429.05mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-35(93.662mm,112.105mm) on Top Layer And Pad U1-36(93.662mm,112.605mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3611.8mil|Location2.X=3623.05mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3611.8mil|Location2.X=3623.05mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-37(92.133mm,114.135mm) on Top Layer And Pad U1-38(91.633mm,114.135mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3592.115mil|Location2.X=3603.365mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3592.115mil|Location2.X=3603.365mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-38(91.633mm,114.135mm) on Top Layer And Pad U1-39(91.133mm,114.135mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3572.43mil|Location2.X=3583.68mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3572.43mil|Location2.X=3583.68mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-39(91.133mm,114.135mm) on Top Layer And Pad U1-40(90.633mm,114.135mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4358.745mil|Location2.Y=4369.995mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4358.745mil|Location2.Y=4369.995mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-4(85.103mm,111.105mm) on Top Layer And Pad U1-5(85.103mm,110.605mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3552.745mil|Location2.X=3563.995mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3552.745mil|Location2.X=3563.995mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-40(90.633mm,114.135mm) on Top Layer And Pad U1-41(90.133mm,114.135mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3533.06mil|Location2.X=3544.31mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3533.06mil|Location2.X=3544.31mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-41(90.133mm,114.135mm) on Top Layer And Pad U1-42(89.633mm,114.135mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3513.375mil|Location2.X=3524.625mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3513.375mil|Location2.X=3524.625mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-42(89.633mm,114.135mm) on Top Layer And Pad U1-43(89.133mm,114.135mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3493.69mil|Location2.X=3504.94mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3493.69mil|Location2.X=3504.94mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-43(89.133mm,114.135mm) on Top Layer And Pad U1-44(88.633mm,114.135mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3474.005mil|Location2.X=3485.255mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3474.005mil|Location2.X=3485.255mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-44(88.633mm,114.135mm) on Top Layer And Pad U1-45(88.133mm,114.135mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3454.32mil|Location2.X=3465.57mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3454.32mil|Location2.X=3465.57mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-45(88.133mm,114.135mm) on Top Layer And Pad U1-46(87.633mm,114.135mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3434.635mil|Location2.X=3445.885mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3434.635mil|Location2.X=3445.885mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-46(87.633mm,114.135mm) on Top Layer And Pad U1-47(87.133mm,114.135mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3414.95mil|Location2.X=3426.2mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3414.95mil|Location2.X=3426.2mil|Location1.Y=4518.375mil|Location2.Y=4529.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-47(87.133mm,114.135mm) on Top Layer And Pad U1-48(86.633mm,114.135mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4339.06mil|Location2.Y=4350.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4339.06mil|Location2.Y=4350.31mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-5(85.103mm,110.605mm) on Top Layer And Pad U1-6(85.103mm,110.105mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4319.375mil|Location2.Y=4330.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4319.375mil|Location2.Y=4330.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-6(85.103mm,110.105mm) on Top Layer And Pad U1-7(85.103mm,109.605mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4299.69mil|Location2.Y=4310.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4299.69mil|Location2.Y=4310.94mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-7(85.103mm,109.605mm) on Top Layer And Pad U1-8(85.103mm,109.105mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4280.005mil|Location2.Y=4291.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3314.375mil|Location2.X=3325.625mil|Location1.Y=4280.005mil|Location2.Y=4291.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Pad U1-8(85.103mm,109.105mm) on Top Layer And Pad U1-9(85.103mm,108.605mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4019.765mil|Location2.X=4031.015mil|Location1.Y=5254.004mil|Location2.Y=5265.254mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4019.765mil|Location2.X=4031.015mil|Location1.Y=5254.004mil|Location2.Y=5265.254mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.018mm &lt; 0.254mm) Between Pad U19-4(101.735mm,132.433mm) on Top Layer And Via (102.387mm,134.188mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.018mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2626.375mil|Location2.X=2637.625mil|Location1.Y=3484.702mil|Location2.Y=3495.952mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2626.375mil|Location2.X=2637.625mil|Location1.Y=3484.702mil|Location2.Y=3495.952mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.185mm &lt; 0.254mm) Between Pad U2-2(67.158mm,89.913mm) on Top Layer And Via (66.853mm,87.96mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3092.171mil|Location2.X=3103.421mil|Location1.Y=3245.446mil|Location2.Y=3256.696mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3092.171mil|Location2.X=3103.421mil|Location1.Y=3245.446mil|Location2.Y=3256.696mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.154mm &lt; 0.254mm) Between Pad U6-3(78.684mm,81.333mm) on Top Layer And Via (78.684mm,83.256mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.154mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4410.649mil|Location2.X=4424.037mil|Location1.Y=3007.965mil|Location2.Y=3019.215mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4410.649mil|Location2.X=4424.037mil|Location1.Y=3007.965mil|Location2.Y=3019.215mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.245mm &lt; 0.254mm) Between Via (111.912mm,75.87mm) from Top Layer to Bottom Layer And Via (112.344mm,76.987mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.245mm] / [Bottom Solder] Mask Sliver [0.245mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5066.875mil|Location2.X=5080.469mil|Location1.Y=2961.875mil|Location2.Y=2973.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5066.875mil|Location2.X=5080.469mil|Location1.Y=2961.875mil|Location2.Y=2973.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.05mm &lt; 0.254mm) Between Via (128.651mm,74.778mm) from Top Layer to Bottom Layer And Via (129.032mm,75.971mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.05mm] / [Bottom Solder] Mask Sliver [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3470.139mil|Location2.X=3481.389mil|Location1.Y=4337.139mil|Location2.Y=4348.389mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0005_PRINTERTECH\CANPLC IO v2\CANPLC_IO.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3470.139mil|Location2.X=3481.389mil|Location1.Y=4337.139mil|Location2.Y=4348.389mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.16mm &lt; 0.254mm) Between Via (88.284mm,109.874mm) from Top Layer to Bottom Layer And Via (88.284mm,110.738mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.16mm] / [Bottom Solder] Mask Sliver [0.16mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

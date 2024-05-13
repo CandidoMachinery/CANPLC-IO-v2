@@ -677,6 +677,10 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=RCNRGVZY
 
+[GeneratedDocument1]
+DocumentPath=Project Outputs for CANPLC_IO_v1\Design Rule Check - CANPLC_IO.html
+DItemRevisionGUID=
+
 [Configuration1]
 Name=Sources
 ParameterCount=0
